@@ -2,6 +2,10 @@ package com.example.projectapp;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -10,6 +14,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -24,6 +29,8 @@ public class AppController {
     public Label idWI1;
     @FXML
     public Label idWI2;
+    @FXML
+    public Button idExit1;
 
     int countErrorRAL = 0, countErrorAddC = 0;
     String[] italianRegions = {"Abruzzo","Basilicata","Calabria","Campania","Emilia-Romagna","Friuli-Venezia Giulia","Lazio","Liguria","Lombardia","Marche","Molise","Piemonte","Puglia","Sardegna","Sicilia","Toscana","Trentino-Alto Adige","Umbria","Valle d'Aosta","Veneto"};
@@ -70,5 +77,16 @@ public class AppController {
 
     public void onRegionsClicked(MouseEvent mouseEvent) {
         idRegions.setStyle("-fx-border-color: gray; -fx-background-radius: 20; -fx-background-color: white; -fx-border-radius: 20;");
+    }
+
+    public void onExitClicked(){
+        try{
+            FXMLLoader fxmlLoader2 = new FXMLLoader(getClass().getResource("Login.fxml"));
+            Parent root = fxmlLoader2.load();
+            Stage stage2 = (Stage) idExit1.getScene().getWindow();
+            stage2.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
