@@ -26,7 +26,11 @@ public class Login {
     public Label idSignupLabel;
 
     int countClick = 0;
-    public void onCheckBoxClicked(ActionEvent actionEvent) {
+    StringBuilder stringBuilder = new StringBuilder("  ");
+    public void viewPassword(){
+
+    }
+    public void onCheckBoxClicked(String ViewPawd) {
         countClick++;
 
         if (countClick % 2 != 0) {
