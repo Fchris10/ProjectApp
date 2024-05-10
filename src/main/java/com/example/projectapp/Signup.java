@@ -53,7 +53,8 @@ public class Signup {
     }
     public void onSignupClicked() {
         //insert of username and password in the database
-        if(value){
+
+        if(!value){
             switchToLogin();
         } else System.out.println("Error access");
     }
@@ -77,7 +78,6 @@ public class Signup {
             e.printStackTrace();
         }
     }
-
     public void ShowPawdClicked() {
         countCheckBox1++;
 
@@ -90,7 +90,6 @@ public class Signup {
             idPawd.setVisible(false);
         }
     }
-
     public void ConfirmPawdClicked() {
         countCheckBox2++;
 
