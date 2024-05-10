@@ -28,9 +28,9 @@ public class Login {
     int countClick = 0;
     StringBuilder stringBuilder = new StringBuilder("  ");
     public void viewPassword(){
-
+        String viewPawd = new String();
     }
-    public void onCheckBoxClicked(String ViewPawd) {
+    public void onCheckBoxClicked() {
         countClick++;
 
         if (countClick % 2 != 0) {

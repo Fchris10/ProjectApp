@@ -5,8 +5,9 @@ import javafx.scene.control.CheckBox;
 
 public class Deductions {
     @FXML
-    private CheckBox idINPS;
-    public void onINPS (){
+    public CheckBox idINPS;
 
+    public void onINPS (){
+        //System.out.println("ciao");
     }
 }

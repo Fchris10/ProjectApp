@@ -34,6 +34,7 @@ public class AppController {
     public Button idNext;
 
     int countErrorRAL = 0, countErrorAddC = 0;
+    boolean valueNext = true;
     String[] italianRegions = {"Abruzzo","Basilicata","Calabria","Campania","Emilia-Romagna","Friuli-Venezia Giulia","Lazio","Liguria","Lombardia","Marche","Molise","Piemonte","Puglia","Sardegna","Sicilia","Toscana","Trentino-Alto Adige","Umbria","Valle d'Aosta","Veneto"};
 
     public void initialize(){
@@ -71,10 +72,9 @@ public class AppController {
         if(idRegions.getValue() == null || idRegions.getValue().isEmpty()){
             idRegions.setStyle("-fx-border-color: red; -fx-background-radius: 20; -fx-background-color: white; -fx-border-radius: 20;");
         }
+        valueNext = false;
     }
-    public void onNextClicked(ActionEvent actionEvent) {
-        checkInsertedValues();
-    }
+
 
     public void onRegionsClicked(MouseEvent mouseEvent) {
         idRegions.setStyle("-fx-border-color: gray; -fx-background-radius: 20; -fx-background-color: white; -fx-border-radius: 20;");
