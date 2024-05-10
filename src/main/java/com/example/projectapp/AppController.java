@@ -31,6 +31,7 @@ public class AppController {
     public Label idWI2;
     @FXML
     public Button idExit1;
+    public Button idNext;
 
     int countErrorRAL = 0, countErrorAddC = 0;
     String[] italianRegions = {"Abruzzo","Basilicata","Calabria","Campania","Emilia-Romagna","Friuli-Venezia Giulia","Lazio","Liguria","Lombardia","Marche","Molise","Piemonte","Puglia","Sardegna","Sicilia","Toscana","Trentino-Alto Adige","Umbria","Valle d'Aosta","Veneto"};
@@ -84,6 +85,17 @@ public class AppController {
             FXMLLoader fxmlLoader2 = new FXMLLoader(getClass().getResource("Login.fxml"));
             Parent root = fxmlLoader2.load();
             Stage stage2 = (Stage) idExit1.getScene().getWindow();
+            stage2.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onNextClicked(){
+        try{
+            FXMLLoader fxmlLoader2 = new FXMLLoader(getClass().getResource("Deductions.fxml"));
+            Parent root = fxmlLoader2.load();
+            Stage stage2 = (Stage) idNext.getScene().getWindow();
             stage2.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
