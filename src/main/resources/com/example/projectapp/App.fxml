@@ -27,12 +27,12 @@
       </Label>
       <TextField fx:id="idAddC" layoutX="378.0" layoutY="261.0" onMouseClicked="#setAddCEditable" style="-fx-border-color: gray; -fx-background-radius: 20; -fx-border-radius: 20;" text="0.8" />
       <ChoiceBox fx:id="idRegions" layoutX="378.0" layoutY="179.0" onMouseClicked="#onRegionsClicked" prefWidth="150.0" style="-fx-background-radius: 20; -fx-background-color: white; -fx-border-color: gray; -fx-border-radius: 20;" />
-      <Label layoutX="284.0" layoutY="207.0" text="Se conosci l'addizionale comunale applicata dal tuo comune indicala qui. ">
+      <Label layoutX="291.0" layoutY="298.0" text="Se conosci l'addizionale comunale applicata dal tuo comune indicala qui. ">
          <font>
             <Font name="System Italic" size="8.0" />
          </font>
       </Label>
-      <Label layoutX="284.0" layoutY="219.0" text="Altrimenti verrà impostata automaticamnte al valore del comune di Milano (0.8%)">
+      <Label layoutX="291.0" layoutY="310.0" text="Altrimenti verrà impostata automaticamnte al valore del comune di Milano (0.8%)">
          <font>
             <Font name="System Italic" size="8.0" />
          </font>
@@ -48,5 +48,6 @@
             <Font size="10.0" />
          </font>
       </Label>
+      <Button fx:id="idExit1" layoutX="32.0" layoutY="349.0" mnemonicParsing="false" onAction="#onExitClicked" text="EXIT" />
    </children>
 </AnchorPane>
