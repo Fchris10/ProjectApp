@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectapp.Signup">
    <children>
       <TextField fx:id="idFullName" layoutX="189.0" layoutY="134.0" prefWidth="180.0" style="-fx-border-color: gray; -fx-border-radius: 20; -fx-background-radius: 20;" />
@@ -31,7 +30,7 @@
             <Font size="10.0" />
          </font>
       </CheckBox>
-      <Label fx:id="idPawd" layoutX="200.0" layoutY="268.0" />
-      <Label fx:id="idCPawd" layoutX="200.0" layoutY="328.0" />
+      <TextField fx:id="idPawd" layoutX="189.0" layoutY="262.0" prefHeight="28.0" prefWidth="180.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: gray;" visible="false" />
+      <TextField fx:id="idCPawd" layoutX="185.0" layoutY="323.0" prefHeight="28.0" prefWidth="180.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: gray;" visible="false" />
    </children>
 </AnchorPane>

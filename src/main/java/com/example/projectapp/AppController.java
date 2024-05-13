@@ -34,7 +34,7 @@ public class AppController {
     public Button idNext;
 
     int countErrorRAL = 0, countErrorAddC = 0;
-    boolean valueNext = true;
+    boolean valueForNext = true;
     String[] italianRegions = {"Abruzzo","Basilicata","Calabria","Campania","Emilia-Romagna","Friuli-Venezia Giulia","Lazio","Liguria","Lombardia","Marche","Molise","Piemonte","Puglia","Sardegna","Sicilia","Toscana","Trentino-Alto Adige","Umbria","Valle d'Aosta","Veneto"};
 
     public void initialize(){
@@ -46,7 +46,9 @@ public class AppController {
     public void setAddCEditable(MouseEvent mouseEvent) {
         idAddC.setEditable(true);
     }
+
     public void errorValues(){
+        valueForNext = true;
         if(countErrorRAL == 1 && countErrorAddC == 1){
             idWI1.setVisible(true);
             idWI2.setVisible(true);
@@ -71,10 +73,11 @@ public class AppController {
         }
         if(idRegions.getValue() == null || idRegions.getValue().isEmpty()){
             idRegions.setStyle("-fx-border-color: red; -fx-background-radius: 20; -fx-background-color: white; -fx-border-radius: 20;");
+        } else{
+            valueForNext = false;
         }
-        valueNext = false;
-    }
 
+    }
 
     public void onRegionsClicked(MouseEvent mouseEvent) {
         idRegions.setStyle("-fx-border-color: gray; -fx-background-radius: 20; -fx-background-color: white; -fx-border-radius: 20;");
@@ -92,13 +95,16 @@ public class AppController {
     }
 
     public void onNextClicked(){
-        try{
-            FXMLLoader fxmlLoader2 = new FXMLLoader(getClass().getResource("Deductions.fxml"));
-            Parent root = fxmlLoader2.load();
-            Stage stage2 = (Stage) idNext.getScene().getWindow();
-            stage2.setScene(new Scene(root));
-        } catch (IOException e) {
-            e.printStackTrace();
+        checkInsertedValues();
+        if(!valueForNext){
+            try{
+                FXMLLoader fxmlLoader2 = new FXMLLoader(getClass().getResource("Deductions.fxml"));
+                Parent root = fxmlLoader2.load();
+                Stage stage2 = (Stage) idNext.getScene().getWindow();
+                stage2.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

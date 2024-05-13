@@ -9,21 +9,25 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class Signup {
 
     @FXML
-    public Button idSignup;
+    private Button idSignup;
     @FXML
-    public Button idCancel;
+    private Button idCancel;
     @FXML
     private CheckBox idShowPawd;
     @FXML
     private CheckBox idConfirmPawd;
     @FXML
-    private Label idPawd;
+    private TextField idPawd;
     @FXML
-    private Label idCPawd;
+    private TextField idCPawd;
     @FXML
     private PasswordField idPassword;
     @FXML
@@ -34,50 +38,70 @@ public class Signup {
     private TextField idUsername;
 
     int countCheckBox1 = 0, countCheckBox2 = 0;
-    boolean value = false;
+    boolean error = false;
 
-    public void checkAll(){
-        String nameStr = idFullName.toString();
-        //check 1
-        if(idFullName.getText().isEmpty() || idUsername.getText().isEmpty() || idPassword.getText().isEmpty() || idConfirmPassword.getText().isEmpty()){
-            value = true;
+    public void importantCheck() {
+        if (idFullName.getText().isEmpty() || idUsername.getText().isEmpty() || idPassword.getText().isEmpty() || idConfirmPassword.getText().isEmpty()) {
+            error = true;
+        } else if (!idPassword.getText().equals(idConfirmPassword.getText())) {
+            error = true;
+        } else {
+            error = false;
         }
-        //check 2
-        for(char c : nameStr.toCharArray()){
-            if(Character.isDigit(c)){
-                value = true;
-            }
+        //check all if the text fields are empty or not and if password == confirm password
+    }
+    public void errorName() {
+        if (Pattern.compile("[0-9]").matcher(idFullName.getText()).find()) {
+            error = true;
         }
-        //check 3
+        //check if in the full name there's a number
+    }
+    public void passwordConstraint() {
+        boolean numError = true, charError = true, symbolError = true;
+        String password = new String(idPawd.getText());
 
+        if (Pattern.compile("[0-9]").matcher(password).find()) {
+            numError = false;
+        }
+        if (Pattern.compile("[a-z]").matcher(password).find() && Pattern.compile("[A-Z]").matcher(password).find()) {
+            charError = false;
+        }
+        if (Pattern.compile("[^a-zA-Z0-9\\\\s]").matcher(password).find()) {
+            symbolError = false;
+        }
+        if (password.length() >= 8 && !numError && !charError && !symbolError) {
+            error = false;
+        } else {
+            error = true;
+        }
+        //check if password contains a letter, a number and a special symbol
     }
     public void onSignupClicked() {
-        //insert of username and password in the database
-
-        if(!value){
+        passwordConstraint();
+        importantCheck();
+        errorName();
+        if (!error) {
             switchToLogin();
-        } else System.out.println("Error access");
+        } else {
+            System.out.println("Error: Please check your inputs.");
+        }
+        //after all checks, if !error we can switch to log in
     }
     public void switchToLogin(){
-        try{
-            FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("Login.fxml"));
-            Parent root = fxmlLoader1.load();
-            Stage stage1 = (Stage) idSignup.getScene().getWindow();
-            stage1.setScene(new Scene(root));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            try {
+                FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("Login.fxml"));
+                Parent root = fxmlLoader1.load();
+                Stage stage1 = (Stage) idSignup.getScene().getWindow();
+                stage1.setScene(new Scene(root));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
     }
     public void onCancelClicked() {
-        try{
-            FXMLLoader fxmlLoader2 = new FXMLLoader(getClass().getResource("Login.fxml"));
-            Parent root = fxmlLoader2.load();
-            Stage stage2 = (Stage) idCancel.getScene().getWindow();
-            stage2.setScene(new Scene(root));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        switchToLogin();
     }
+
+    //two methods that make the 'password' and 'confirm password' visible
     public void ShowPawdClicked() {
         countCheckBox1++;
 
@@ -86,6 +110,7 @@ public class Signup {
             idPawd.setText(idPassword.getText());
             idPawd.setVisible(true);
         } else {
+            idPassword.setText(idPawd.getText());
             idPassword.setVisible(true);
             idPawd.setVisible(false);
         }
@@ -98,8 +123,9 @@ public class Signup {
             idCPawd.setText(idConfirmPassword.getText());
             idCPawd.setVisible(true);
         } else {
+            idConfirmPassword.setText(idCPawd.getText());
             idConfirmPassword.setVisible(true);
-            idPawd.setVisible(false);
+            idCPawd.setVisible(false);
         }
     }
 }

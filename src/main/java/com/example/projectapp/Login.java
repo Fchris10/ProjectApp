@@ -21,15 +21,12 @@ public class Login {
     @FXML
     public Button idLogin;
     @FXML
-    public Label idVisiblePawd;
+    public TextField idVisiblePawd;
     @FXML
     public Label idSignupLabel;
 
     int countClick = 0;
-    StringBuilder stringBuilder = new StringBuilder("  ");
-    public void viewPassword(){
-        String viewPawd = new String();
-    }
+    //a method that make the 'password' of log in visible
     public void onCheckBoxClicked() {
         countClick++;
 
@@ -38,12 +35,13 @@ public class Login {
             idVisiblePawd.setText(idPassword.getText());
             idVisiblePawd.setVisible(true);
         } else {
+            idPassword.setText(idVisiblePawd.getText());
             idPassword.setVisible(true);
             idVisiblePawd.setVisible(false);
         }
     }
-
-    public void onLoginClicked(ActionEvent actionEvent) {
+    //implementing the database, after that user compiles 'username' and 'password' he/she can switch to the main scene
+    public void onLoginClicked() {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("App.fxml"));
             Parent root = fxmlLoader.load();
@@ -53,7 +51,7 @@ public class Login {
             e.printStackTrace();
         }
     }
-
+    //the user switches to the page of sign up
     public void onSignupLabelClicked() {
 
         try{
