@@ -12,25 +12,18 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Login {
-    @FXML
-    private TextField idUsername;
-    @FXML
-    private PasswordField idPassword;
-    @FXML
-    private CheckBox idCheckBox;
-    @FXML
-    public Button idLogin;
-    @FXML
-    public TextField idVisiblePawd;
-    @FXML
-    public Label idSignupLabel;
+    @FXML private TextField idUsername;
+    @FXML private PasswordField idPassword;
+    @FXML private Button idLogin;
+    @FXML private TextField idVisiblePawd;
+    @FXML private Label idSignupLabel;
 
-    int countClick = 0;
+    boolean countClick = false;
     //a method that make the 'password' of log in visible
     public void onCheckBoxClicked() {
-        countClick++;
+        countClick = !countClick;
 
-        if (countClick % 2 != 0) {
+        if (countClick) {
             idPassword.setVisible(false);
             idVisiblePawd.setText(idPassword.getText());
             idVisiblePawd.setVisible(true);

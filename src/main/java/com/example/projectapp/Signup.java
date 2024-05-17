@@ -16,34 +16,22 @@ import java.util.regex.Pattern;
 
 public class Signup {
 
-    @FXML
-    private Button idSignup;
-    @FXML
-    private Button idCancel;
-    @FXML
-    private CheckBox idShowPawd;
-    @FXML
-    private CheckBox idConfirmPawd;
-    @FXML
-    private TextField idPawd;
-    @FXML
-    private TextField idCPawd;
-    @FXML
-    private PasswordField idPassword;
-    @FXML
-    private PasswordField idConfirmPassword;
-    @FXML
-    private TextField idFullName;
-    @FXML
-    private TextField idUsername;
+    @FXML private Button idSignup;
+    @FXML private Button idCancel;
+    @FXML private CheckBox idShowPawd;
+    @FXML private CheckBox idConfirmPawd;
+    @FXML private TextField idPawd;
+    @FXML private TextField idCPawd;
+    @FXML private PasswordField idPassword;
+    @FXML private PasswordField idConfirmPassword;
+    @FXML private TextField idFullName;
+    @FXML private TextField idUsername;
 
-    int countCheckBox1 = 0, countCheckBox2 = 0;
+    boolean countCheckBox1 = false, countCheckBox2 = false;
     boolean error = false;
 
     public void importantCheck() {
-        if (idFullName.getText().isEmpty() || idUsername.getText().isEmpty() || idPassword.getText().isEmpty() || idConfirmPassword.getText().isEmpty()) {
-            error = true;
-        } else if (!idPassword.getText().equals(idConfirmPassword.getText())) {
+        if (idFullName.getText().isEmpty() || idUsername.getText().isEmpty() || idPassword.getText().isEmpty() || idConfirmPassword.getText().isEmpty() || !idPassword.getText().equals(idConfirmPassword.getText())) {
             error = true;
         } else {
             error = false;
@@ -103,9 +91,9 @@ public class Signup {
 
     //two methods that make the 'password' and 'confirm password' visible
     public void ShowPawdClicked() {
-        countCheckBox1++;
+        countCheckBox1 = !countCheckBox1;
 
-        if (countCheckBox1 % 2 != 0) {
+        if (countCheckBox1) {
             idPassword.setVisible(false);
             idPawd.setText(idPassword.getText());
             idPawd.setVisible(true);
@@ -116,9 +104,9 @@ public class Signup {
         }
     }
     public void ConfirmPawdClicked() {
-        countCheckBox2++;
+        countCheckBox2 = !countCheckBox2;
 
-        if (countCheckBox2 % 2 != 0) {
+        if (countCheckBox2) {
             idConfirmPassword.setVisible(false);
             idCPawd.setText(idConfirmPassword.getText());
             idCPawd.setVisible(true);

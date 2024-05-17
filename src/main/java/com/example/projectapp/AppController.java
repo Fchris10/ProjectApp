@@ -19,19 +19,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class AppController {
-    @FXML
-    public TextField idRAL;
-    @FXML
-    public TextField idAddC;
-    @FXML
-    public ChoiceBox<String> idRegions;
-    @FXML
-    public Label idWI1;
-    @FXML
-    public Label idWI2;
-    @FXML
-    public Button idExit1;
-    public Button idNext;
+    @FXML private TextField idRAL;
+    @FXML private TextField idAddC;
+    @FXML private ChoiceBox<String> idRegions;
+    @FXML private Label idWI1;
+    @FXML private Label idWI2;
+    @FXML private Button idExit1;
+    @FXML private Button idNext;
 
     int countErrorRAL = 0, countErrorAddC = 0;
     boolean valueForNext = true;
